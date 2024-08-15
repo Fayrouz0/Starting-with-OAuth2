@@ -8,6 +8,11 @@
 
         <h4>Welcome {{user.username}} </h4>
 
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+        
     {% endif %}
     
 {% endblock content %}

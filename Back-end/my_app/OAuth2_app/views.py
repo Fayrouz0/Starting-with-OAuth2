@@ -1,8 +1,9 @@
-import django.contrib
+
 from django.shortcuts import render,redirect
 
 from . forms import CreateUserForm, LoginForm
 
+from .middlewares import author,guest
 # Authentication models and functions
 
 from django.contrib.auth.models import auth
@@ -12,6 +13,7 @@ from django.contrib.auth import authenticate,login,logout
 def home(request):
     return render(request,'OAuth2_app/index.html')
 
+@guest
 def register(request):
 
     form = CreateUserForm()
@@ -26,7 +28,7 @@ def register(request):
 
     return render(request,'OAuth2_app/register.html', context=context)
 
-
+@guest
 def login(request):
     
     form = LoginForm()
@@ -48,7 +50,9 @@ def login(request):
     return render(request,'OAuth2_app/login.html',context=context)
 
 
-
-
+@author
 def dashboard(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('login')
     return render(request,'OAuth2_app/dashboard.html')

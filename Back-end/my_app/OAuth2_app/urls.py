@@ -10,5 +10,4 @@ urlpatterns = [
 
     path('dashboard',views.dashboard, name="dashboard"),
     
-    #path('google/login',views.login,name='provider_login_google')
 ]
