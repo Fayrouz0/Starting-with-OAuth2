@@ -20,4 +20,5 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('OAuth2_app.urls')), #connect the both urls.py files
     path('admin/', admin.site.urls),
+    path("",include("allauth.urls")),
 ]
