@@ -33,13 +33,15 @@ def login(request):
     if request.method == "POST":
         form=LoginForm(request,data=request.POST)
         if form.is_valid():
-            email=request.POST.get('email')
+            username=request.POST.get('username')
             password=request.POST.get('password')
-            user = authenticate(request,email=email,password=password)
+            user = authenticate(request,username=username,password=password)
             
             if user is not None:
                 auth.login(request,user)
                 return redirect ("dashboard")
+            else:
+                error= "Invalid Username or password"
     
     context = {'loginForm':form}
     

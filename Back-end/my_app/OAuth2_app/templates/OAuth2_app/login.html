@@ -1,16 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <form method="POST" autocomplete="off">
-        {% csrf_token %}
+{% extends 'base.html' %}
 
-        {{ loginForm.as_p}}
-        <input type="submit" value="Register"/>
-    </form>
-</body>
-</html>
+{% load widget_tweaks %}
+
+{% block content %}
+
+    <div tabindex="-1"
+    class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 h-full items-center justify-center flex">
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+
+        <div class="relative bg-white rounded-lg shadow">
+            
+
+            <div class="p-5">
+                <h3 class="text-2xl mb-0.5 font-medium"></h3>
+                <p class="mb-4 text-sm font-normal text-gray-800"></p>
+
+                <div class="text-center">
+                    <p class="mb-3 text-2xl font-semibold leading-5 text-slate-900">
+                        Login to your account
+                    </p>
+                    <p class="mt-2 text-sm leading-4 text-slate-600">
+                        You must be logged in to perform this action.
+                    </p>
+                </div>
+
+                <div class="mt-7 flex flex-col gap-2">
+
+                    <button
+                        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
+                            src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub"
+                            class="h-[18px] w-[18px] ">
+                        Continue with GitHub
+                    </button>
+
+                    <button
+                        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"
+                            class="h-[18px] w-[18px] ">Continue with
+                        Google
+                    </button>
+
+
+                    <button
+                        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
+                            src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="Google"
+                            class="h-[18px] w-[18px] ">Continue with
+                        LinkedIn
+                    </button>
+
+                    <button
+                        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+                                <svg class="h-[18px] w-[18px]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 48 48" version="1.1">
+                                    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0">
+                                            <path
+                                                d="M225.638355,208 L202.649232,208 C201.185673,208 200,206.813592 200,205.350603 L200,162.649211 C200,161.18585 201.185859,160 202.649232,160 L245.350955,160 C246.813955,160 248,161.18585 248,162.649211 L248,205.350603 C248,206.813778 246.813769,208 245.350955,208 L233.119305,208 L233.119305,189.411755 L239.358521,189.411755 L240.292755,182.167586 L233.119305,182.167586 L233.119305,177.542641 C233.119305,175.445287 233.701712,174.01601 236.70929,174.01601 L240.545311,174.014333 L240.545311,167.535091 C239.881886,167.446808 237.604784,167.24957 234.955552,167.24957 C229.424834,167.24957 225.638355,170.625526 225.638355,176.825209 L225.638355,182.167586 L219.383122,182.167586 L219.383122,189.411755 L225.638355,189.411755 L225.638355,208 L225.638355,208 Z"
+                                                id="Facebook">
+                            
+                                            </path>
+                                        </g>
+                                    </g>
+                                 </svg>                        
+                                Continue with Facebook
+                    </button>
+                </div>
+
+                <div class="flex w-full items-center gap-2 py-6 text-sm text-slate-600">
+                    <div class="h-px w-full bg-slate-200"></div>
+                    OR
+                    <div class="h-px w-full bg-slate-200"></div>
+                </div>
+
+               <!-- {% if form.error %}
+                    <p class='form-errors'>{{ error }}</p>
+                {% endif %}-->
+
+                <form class="w-full" method="post" action="">
+                    {% csrf_token %}
+                    <label for="username" class="sr-only">username address</label>
+                    {% render_field loginForm.username name="username" type="text" autocomplete="username" required="" class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1" placeholder="Username" value="" %}
+
+                    <label for="password" class="sr-only">Password</label>
+                    {% render_field loginForm.password name="password" type="password" autocomplete="current-password" required="" class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1" placeholder="Password" value="" %}
+
+                    <p class="mb-3 mt-2 text-sm text-gray-500">
+                    </p>
+                    <button type="submit"
+                        class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">
+                        Login
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-sm text-slate-600">
+                    Don't have an account?
+                    <a href="/signup" class="font-medium text-[#4285f4]">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+

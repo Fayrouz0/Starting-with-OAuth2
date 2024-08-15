@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from django import forms
-from django.forms.widgets import PasswordInput,EmailInput
+from django.forms.widgets import PasswordInput,TextInput
 
 class CreateUserForm(UserCreationForm):
 
@@ -11,5 +11,5 @@ class CreateUserForm(UserCreationForm):
         fields = ['username','email','password1','password2']
         
 class LoginForm(AuthenticationForm):
-    email=forms.CharField(widget=EmailInput())
+    username=forms.CharField(widget=TextInput())
     password=forms.CharField(widget=PasswordInput())
