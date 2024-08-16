@@ -22,7 +22,7 @@
                         Login to your account
                     </p>
                     <p class="mt-2 text-sm leading-4 text-slate-600">
-                        You must be logged in to perform this action.
+                        You must be logged in to continue.
                     </p>
                 </div>
 
@@ -44,12 +44,15 @@
                     </button>
 
 
-                    <button
-                        class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"><img
+                    <form action="{% provider_login_url 'linkedin-openid' %}" method="post" >
+                        {% csrf_token %}
+                        <button type="submit" class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60 social-signin-button linkedin-btn">
+                            <img
                             src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="Google"
-                            class="h-[18px] w-[18px] ">Continue with
-                        LinkedIn
-                    </button>
+                            class="h-[18px] w-[18px] ">
+                            <span>Continue with Linkedin</span>
+                        </button>
+                    </form>
 
                     <button
                         class="inline-flex h-10 w-full items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">

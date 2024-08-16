@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    
+    'allauth.socialaccount.providers.openid_connect',
     
     
 ]
@@ -162,5 +162,18 @@ SOCIALACCOUNT_PROVIDERS = {
         "AUTH_PARAMS":{
             "access_type":"online"
         }
-    }
+    },
+    "openid_connect": {
+        "APPS": [
+            {
+                "provider_id": "linkedin-openid", 
+                "name": "LinkedIn",
+                "client_id": "7728x2zd0yf1dn", 
+                "secret": "f99vEPyM7S3enF6v", 
+                "settings": {
+                    "server_url": "https://www.linkedin.com/oauth",
+                },
+            }
+        ],
+    },
 }
